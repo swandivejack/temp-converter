@@ -25,18 +25,19 @@ public class TempConverter {
 
 
   private static void convert(Scanner scanner) {
-    String line;
-    while (!(line = scanner.nextLine().trim()).isEmpty()) {
-      char finalChar = line.toUpperCase().charAt(line.length() - 1);
-      if (finalChar == 'C') {
-        double celcius = parseTemperature(line);
-        System.out.printf("%.3f F%n", celsiusToFahrenheit(celcius));
-      } else if (finalChar == 'F') {
-        double fahrenheit = parseTemperature(line);
-        System.out.printf("%.3f C%n", fahrenheitToCelsius(fahrenheit));
-
+    try {
+      String line;
+      while (!(line = scanner.nextLine().trim()).isEmpty()) {
+        char finalChar = line.toUpperCase().charAt(line.length() - 1);
+        if (finalChar == 'C') {
+          double celcius = parseTemperature(line);
+          System.out.printf("%.3f F%n", celsiusToFahrenheit(celcius));
+        } else if (finalChar == 'F') {
+          double fahrenheit = parseTemperature(line);
+          System.out.printf("%.3f C%n", fahrenheitToCelsius(fahrenheit));
+        }
       }
-    }
+    } catch (NoSuchElementException expected) {}
   }
 
   private static double parseTemperature(String line) {
